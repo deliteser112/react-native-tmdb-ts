@@ -1,40 +1,69 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+
+import { useAppState } from '../state/AppContext';
 import { getTrendingTVShows } from '../api/TMDBService';
-// import { StackNavigationProp } from '@react-navigation/stack';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/AppNavigator';
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+// components
+import MovieCard from '../components/MovieCard';
+import LoadingScreen from '../components/LoadingScreen';
 
-type Props = {
-  navigation: HomeScreenNavigationProp;
-};
-
-const HomeScreen: React.FC<Props> = ({ navigation }) => {
-  const [trendingShows, setTrendingShows] = useState<any[]>([]);
+const HomeScreen: React.FC = () => {
+  const { state, dispatch } = useAppState();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchTrendingShows = async () => {
       const data = await getTrendingTVShows();
-      setTrendingShows(data);
+      dispatch({ type: 'SET_TRENDING_TV_SHOWS', payload: data });
+      setLoading(false);
     };
 
-    fetchTrendingShows();
+    if (state.trendingTVShows.length === 0) {
+      fetchTrendingShows();
+    }
   }, []);
 
+  if (loading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <View>
-      <Text>Trending TV Shows</Text>
+    <View style={styles.container}>
+      <Text style={styles.headerTitle}>Trending TV Shows</Text>
       <FlatList
-        data={trendingShows}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
+        data={state.trendingTVShows}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({ item }) => <MovieCard movie={item} isHome />}
+        showsHorizontalScrollIndicator={false}
       />
-      <Button title="Go to Movies" onPress={() => navigation.navigate('Movies')} />
-      <Button title="Go to TV Shows" onPress={() => navigation.navigate('TVShows')} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5fcff',
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 20,
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+});
 
 export default HomeScreen;

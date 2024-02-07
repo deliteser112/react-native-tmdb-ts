@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { API_KEY, BASE_URL } from '@env';
 
-console.log(API_KEY, BASE_URL);
-
 export const getTrendingTVShows = async (): Promise<any[]> => {
     try {
         const response = await axios.get(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}`);

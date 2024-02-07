@@ -1,24 +1,48 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
-import MovieListScreen from '../screens/MovieListScreen';
-import TVShowsListScreen from '../screens/TVShowsListScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export type RootStackParamList = {
-  Home: undefined;
-  Movies: undefined;
-  TVShows: undefined;
-};
+// navigators
+import HomeStackNavigator from './HomeStackNavigator';
+import MoviesStackNavigator from './MoviesStackNavigator';
+import TVShowsStackNavigator from './TVShowsStackNavigator';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator();
 
 const AppNavigator: React.FC = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Movies" component={MovieListScreen} />
-      <Stack.Screen name="TVShows" component={TVShowsListScreen} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeStackNavigator}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Movies"
+        component={MoviesStackNavigator}
+        options={{
+          tabBarLabel: 'Movies',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="movie" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="TV Shows"
+        component={TVShowsStackNavigator}
+        options={{
+          tabBarLabel: 'TV Shows',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="tv" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
