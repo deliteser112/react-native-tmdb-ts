@@ -4,6 +4,8 @@ import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 const MovieDetailScreen: React.FC<{ route: any }> = ({ route }) => {
   const { item } = route.params;
 
+  const title = item.title || item.name;
+
   return (
     <ScrollView style={styles.container}>
       <Image
@@ -11,7 +13,7 @@ const MovieDetailScreen: React.FC<{ route: any }> = ({ route }) => {
         style={styles.image}
       />
       <View style={styles.content}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.overview}>{item.overview}</Text>
       </View>
     </ScrollView>

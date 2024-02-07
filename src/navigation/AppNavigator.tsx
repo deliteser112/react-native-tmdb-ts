@@ -11,17 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const AppNavigator: React.FC = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="Home"
-        component={HomeStackNavigator}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={size} />
-          ),
-        }}
-      />
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
         name="Movies"
         component={MoviesStackNavigator}
@@ -29,6 +19,16 @@ const AppNavigator: React.FC = () => {
           tabBarLabel: 'Movies',
           tabBarIcon: ({ color, size }) => (
             <Icon name="movie" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Home"
+        component={HomeStackNavigator}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" color={color} size={size} />
           ),
         }}
       />

@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { View, FlatList, StyleSheet, Text } from 'react-native';
 
-import { useAppState } from '../state/AppContext';
-import { getPopularMovies } from '../api/TMDBService';
-
-// components
+import { AppContext } from '../context/AppContext';
 import MovieCard from '../components/MovieCard';
 import LoadingScreen from '../components/LoadingScreen';
 
 const MovieListScreen: React.FC = () => {
-  const { state, dispatch } = useAppState();
-  const [loading, setLoading] = useState<boolean>(true);
+  const { popularMovies, loading, error, fetchPopularMovies } =
+    useContext(AppContext);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const data = await getPopularMovies();
-      dispatch({ type: 'SET_POPULAR_MOVIES', payload: data });
-      setLoading(false);
-    };
-
-    if (state.popularMovies.length === 0) {
-      fetchMovies();
+    if (popularMovies.length === 0) {
+      fetchPopularMovies();
     }
-  }, []);
+  }, [fetchPopularMovies, popularMovies.length]);
 
   if (loading) {
     return <LoadingScreen />;
   }
 
+  if (error) {
+    return (
+      <View style={styles.centered}>
+        <Text>Error: {error}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={state.popularMovies}
+        data={popularMovies}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <MovieCard movie={item} isHome={false} />}
         showsHorizontalScrollIndicator={false}
@@ -49,13 +48,13 @@ const styles = StyleSheet.create({
   },
   row: {
     flex: 1,
-    justifyContent: 'space-around', // This will space your columns nicely
+    justifyContent: 'space-around',
     marginBottom: 10,
   },
-  loader: {
+  centered: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

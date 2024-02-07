@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 
-import { useAppState } from '../state/AppContext';
-import { getPopularTVShows } from '../api/TMDBService';
-
-// components
+import { AppContext } from '../context/AppContext';
 import MovieCard from '../components/MovieCard';
 import LoadingScreen from '../components/LoadingScreen';
 
 const TVShowsListScreen: React.FC = () => {
-  const { state, dispatch } = useAppState();
-  const [loading, setLoading] = useState<boolean>(true);
+  const { popularTVShows, loading, error, fetchPopularTVShows } =
+    useContext(AppContext);
 
   useEffect(() => {
-    const fetchTVShows = async () => {
-      const data = await getPopularTVShows();
-      dispatch({ type: 'SET_POPULAR_TV_SHOWS', payload: data });
-      setLoading(false);
-    };
-
-    if (state.popularTVShows.length === 0) {
-      fetchTVShows();
+    if (popularTVShows.length === 0) {
+      fetchPopularTVShows();
     }
-  }, []);
+  }, [fetchPopularTVShows, popularTVShows.length]);
 
   if (loading) {
     return <LoadingScreen />;
   }
 
+  if (error) {
+    return (
+      <View style={styles.centered}>
+        <Text>Error: {error}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={state.popularTVShows}
+        data={popularTVShows}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <MovieCard movie={item} isHome={false} />}
         showsHorizontalScrollIndicator={false}
@@ -52,10 +51,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginBottom: 10,
   },
-  loader: {
+  centered: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
+
 export default TVShowsListScreen;

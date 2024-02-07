@@ -33,7 +33,6 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, isHome }) => {
 
   return (
     <TouchableOpacity
-      // style={styles.card}
       onPress={() => navigation.navigate('Detail', { item: movie })}>
       <View style={isHome ? styles.homeCard : styles.card}>
         <ImageBackground
