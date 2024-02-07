@@ -19,7 +19,8 @@ interface MovieCardProps {
   isHome: boolean;
   movie: {
     id: number;
-    title: string;
+    title?: string | undefined;
+    name?: string | undefined;
     poster_path: string;
   };
 }
@@ -27,6 +28,8 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = ({ movie, isHome }) => {
   const navigation = useNavigation();
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+  const title = movie.title ? movie.title : movie.name;
 
   return (
     <TouchableOpacity
@@ -39,7 +42,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, isHome }) => {
           <LinearGradient
             colors={['transparent', 'rgba(0,0,0,0.9)']}
             style={styles.gradient}>
-            <Text style={styles.title}>{movie.title}</Text>
+            <Text style={styles.title}>{title}</Text>
           </LinearGradient>
         </ImageBackground>
       </View>
