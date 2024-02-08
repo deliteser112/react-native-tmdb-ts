@@ -25,7 +25,7 @@ interface MovieCardProps {
   };
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, isHome }) => {
+const MovieCard = ({ movie, isHome }: MovieCardProps) => {
   const navigation = useNavigation();
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 

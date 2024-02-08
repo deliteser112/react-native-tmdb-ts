@@ -6,7 +6,7 @@ import { AppContext } from '../context/AppContext';
 import MovieCard from '../components/MovieCard';
 import LoadingScreen from '../components/LoadingScreen';
 
-const HomeScreen: React.FC = () => {
+const HomeScreen = () => {
   const { trendingTVShows, loading, error, fetchTrendingTVShows } =
     useContext(AppContext);
   const [searchQuery, setSearchQuery] = useState('');

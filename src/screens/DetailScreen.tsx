@@ -1,10 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
-const MovieDetailScreen: React.FC<{ route: any }> = ({ route }) => {
+const MovieDetailScreen = ({ route }: any) => {
   const { item } = route.params;
-
-  console.log('---item---', item)
 
   const title = item.title || item.name;
 

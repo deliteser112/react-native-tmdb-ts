@@ -35,7 +35,7 @@ interface AppProviderProps {
 }
 
 // Create a provider component
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+export const AppProvider = ({ children }: AppProviderProps) => {
   const [trendingTVShows, setTrendingTVShows] = useState<TVShow[]>([]);
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [popularTVShows, setPopularTVShows] = useState<TVShow[]>([]);

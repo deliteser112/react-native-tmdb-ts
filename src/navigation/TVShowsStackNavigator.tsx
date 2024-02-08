@@ -7,7 +7,7 @@ import DetailScreen from '../screens/DetailScreen';
 
 const Stack = createNativeStackNavigator();
 
-const TVShowsStackNavigator: React.FC = () => {
+const TVShowsStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen

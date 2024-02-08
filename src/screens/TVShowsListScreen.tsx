@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext';
 import MovieCard from '../components/MovieCard';
 import LoadingScreen from '../components/LoadingScreen';
 
-const TVShowsListScreen: React.FC = () => {
+const TVShowsListScreen = () => {
   const { popularTVShows, loading, error, fetchPopularTVShows } =
     useContext(AppContext);
 

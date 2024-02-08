@@ -9,7 +9,7 @@ import TVShowsStackNavigator from './TVShowsStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
-const AppNavigator: React.FC = () => {
+const AppNavigator = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
