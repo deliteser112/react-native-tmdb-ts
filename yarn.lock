@@ -1995,6 +1995,17 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@testing-library/jest-native@^5.4.3":
+  version "5.4.3"
+  resolved "https://registry.npmjs.org/@testing-library/jest-native/-/jest-native-5.4.3.tgz"
+  integrity sha512-/sSDGaOuE+PJ1Z9Kp4u7PQScSVVXGud59I/qsBFFJvIbcn4P6yYw6cBnBmbPF+X9aRIsTJRDl6gzw5ZkJNm66w==
+  dependencies:
+    chalk "^4.1.2"
+    jest-diff "^29.0.1"
+    jest-matcher-utils "^29.0.1"
+    pretty-format "^29.0.3"
+    redent "^3.0.0"
+
 "@testing-library/react-native@^12.4.3":
   version "12.4.3"
   resolved "https://registry.npmjs.org/@testing-library/react-native/-/react-native-12.4.3.tgz"
@@ -4445,7 +4456,7 @@ jest-config@^29.7.0:
     slash "^3.0.0"
     strip-json-comments "^3.1.1"
 
-jest-diff@^29.7.0:
+jest-diff@^29.0.1, jest-diff@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/jest-diff/-/jest-diff-29.7.0.tgz"
   integrity sha512-LMIgiIrhigmPrs03JHpxUh2yISK3vLFPkAodPeo0+BuF7wA2FoQbkEg1u8gBYBThncu7e1oEDUfIXVuTqLRUjw==
@@ -4517,7 +4528,7 @@ jest-leak-detector@^29.7.0:
     jest-get-type "^29.6.3"
     pretty-format "^29.7.0"
 
-jest-matcher-utils@^29.7.0:
+jest-matcher-utils@^29.0.1, jest-matcher-utils@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/jest-matcher-utils/-/jest-matcher-utils-29.7.0.tgz"
   integrity sha512-sBkD+Xi9DtcChsI3L3u0+N0opgPYnCRPtGcQYrgXmR+hmt/fYfWAL0xRXYU8eWOdfuLgBe0YCW3AFtnRLagq/g==
@@ -5708,6 +5719,16 @@ prettier@>=2, prettier@>=2.0.0, prettier@2.8.8:
   resolved "https://registry.npmjs.org/prettier/-/prettier-2.8.8.tgz"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
+pretty-format@^26.0.1:
+  version "26.6.2"
+  resolved "https://registry.npmjs.org/pretty-format/-/pretty-format-26.6.2.tgz"
+  integrity sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg==
+  dependencies:
+    "@jest/types" "^26.6.2"
+    ansi-regex "^5.0.0"
+    ansi-styles "^4.0.0"
+    react-is "^17.0.1"
+
 pretty-format@^26.5.2:
   version "26.6.2"
   resolved "https://registry.npmjs.org/pretty-format/-/pretty-format-26.6.2.tgz"
@@ -5728,7 +5749,7 @@ pretty-format@^26.6.2:
     ansi-styles "^4.0.0"
     react-is "^17.0.1"
 
-pretty-format@^29.0.0, pretty-format@^29.7.0:
+pretty-format@^29.0.0, pretty-format@^29.0.3, pretty-format@^29.7.0:
   version "29.7.0"
   resolved "https://registry.npmjs.org/pretty-format/-/pretty-format-29.7.0.tgz"
   integrity sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==
@@ -5892,6 +5913,13 @@ react-native-screens@^3.29.0, "react-native-screens@>= 3.0.0":
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-testing-library@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.npmjs.org/react-native-testing-library/-/react-native-testing-library-6.0.0.tgz"
+  integrity sha512-BobXLtlef+gklN6cl6oC20/rnW9lWGj7Yxzzn+fTb+9go0LnGGgJ8DNaJtuW5oS7pOkm1Wq+u+cypALyf32FjA==
+  dependencies:
+    pretty-format "^26.0.1"
+
 react-native-vector-icons@^10.0.3:
   version "10.0.3"
   resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-10.0.3.tgz"
@@ -5975,7 +6003,7 @@ react-shallow-renderer@^16.15.0:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-react-test-renderer@>=16.8.0, react-test-renderer@18.2.0:
+react-test-renderer@>=16.0.0, react-test-renderer@>=16.8.0, react-test-renderer@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-test-renderer/-/react-test-renderer-18.2.0.tgz"
   integrity sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA==
@@ -5984,7 +6012,7 @@ react-test-renderer@>=16.8.0, react-test-renderer@18.2.0:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.0"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", react@^18.0, react@^18.2.0, react@>=16.8, react@>=16.8.0, react@>=17.0.0, react@18.2.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.9.0 || ^17.0.0 || ^18", react@^18.0, react@^18.2.0, react@>=16.0.0, react@>=16.8, react@>=16.8.0, react@>=17.0.0, react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

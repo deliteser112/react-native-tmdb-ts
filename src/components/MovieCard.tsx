@@ -1,3 +1,4 @@
+// MovieCard.tsx
 import React from 'react';
 import {
   View,
@@ -8,7 +9,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 
 const { width } = Dimensions.get('window');
 const HOME_CARD_HEIGHT = 250;
@@ -33,16 +33,14 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, isHome }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Detail', { item: movie })}>
+      onPress={() => navigation.navigate('Detail', { item: movie })}
+      testID={`${movie.id}`}>
       <View style={isHome ? styles.homeCard : styles.card}>
         <ImageBackground
           source={{ uri: imageUrl }}
           style={styles.imageBackground}>
-          <LinearGradient
-            colors={['transparent', 'rgba(0,0,0,0.9)']}
-            style={styles.gradient}>
-            <Text style={styles.title}>{title}</Text>
-          </LinearGradient>
+          <View style={styles.overlay} />
+          <Text style={styles.title}>{title}</Text>
         </ImageBackground>
       </View>
     </TouchableOpacity>
@@ -69,17 +67,19 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-end',
   },
-  gradient: {
-    width: '100%',
-    height: '30%',
-    justifyContent: 'flex-end',
-    paddingBottom: 10,
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'black',
+    opacity: 0.3, // Adjust the opacity to control the gradient darkness
   },
   title: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.5)', // Semi-transparent background for the text
+    width: '100%',
   },
 });
 
